@@ -84,10 +84,10 @@ id_convenio integer auto_increment,
 nombre varchar(60) not null,
 descripcion varchar(200) not null,
 id_tipo_movilidad integer not null,
-id_convenio_especifico integer not null,
+id_convenio_marco integer not null,
 id_universidad integer not null,
 constraint foranea_convenio_universidad foreign key(id_universidad) references universidad(id_universidad),
-constraint foranea_convenio_convenio_especifico foreign key(id_convenio_especifico) references convenio_especifico(id_convenio_especifico),
+constraint foranea_convenio_convenio_marco foreign key(id_convenio_marco) references convenio_marco(id_convenio_marco),
 constraint foranea_convenio_tipo_movilidad foreign key(id_tipo_movilidad) references tipo_movilidad(id_tipo_movilidad),
 constraint primaria_convenio primary key(id_convenio)
 );
@@ -95,8 +95,10 @@ constraint primaria_convenio primary key(id_convenio)
 
 create table if not exists convenio_especifico(
 id_convenio_especifico integer auto_increment,
+id_convenio_marco integer not null,
 nombre varchar(60) not null,
 descripcion varchar(200) not null,
+constraint foaranea_convenio_espeficio_convenio_marco foreign key(id_convenio_marco) 
 references convenio_marco(id_convenio_marco),
 constraint primaria_convenio_especifico primary key(id_convenio_especifico)
 );

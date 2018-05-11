@@ -5,6 +5,9 @@ const express=require('express'),
 
 
 router.get('/experiencias',experienciaController.listar)
+router.get('/inicio',(req,res)=>{
+	res.render("Admin/inicio");
+})
 router.post('/agregar',adminController.agregar)
 router.get('/eliminar?:nombre',adminController.eliminar)
 
