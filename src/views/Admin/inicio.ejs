@@ -1,0 +1,49 @@
+
+
+  <% include partes/__cabecera %>
+  <% include partes/__navegacion %>
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+      <div class="container">
+      	<div class="row">
+      		<div class="col-lg-7">
+      					<table class="table">
+		      				<thead>
+		      					<tr>
+		      						<th>nombre</th>
+		      						<th>telefono</th>
+		      						<th>direccion</th>
+		      					</tr>
+		      				</thead>
+		      				<tbody>
+		      					<%for(var i=0;i<data.length;i++){%>
+		      						<tr>
+		      							<td><%=data[i].nombre%></td>
+		      							<td><%=data[i].telefono%></td>
+		      							<td><%=data[i].direccion%></td>
+		      							<td><a href='/admin/eliminar?nombre=<%=data[i].nombre%>' class='btn btn-danger'>Eliminar</a></td>
+		      						</tr>
+		      					<%}%>
+		      				</tbody>
+      					</table>
+      		</div>
+      		<div class="col-lg-4">
+      			<form action="/admin/agregar" method="post">
+      				<div class="form-group">
+      					<input type="text" name="nombre" placeholder="nombre" class="form-control">
+      				</div>
+      				<div class="form-group">
+      					<input type="text" name="telefono" placeholder="telefono" class="form-control">
+      				</div>
+      				<div class="form-group">
+      					<input type="text" name="direccion" placeholder="direccion" class="form-control">
+      				</div>
+      				<button class="btn btn-primary">Registrar</button>
+      			</form>
+      		</div>
+      	</div>
+      </div>
+      
+    </section>
+  </div>
+ <% include partes/__footer %>
