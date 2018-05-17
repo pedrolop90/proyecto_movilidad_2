@@ -6,7 +6,7 @@ const express=require("express"),
 	  mysql=require("mysql"),
 	  myConnection=require('express-myconnection'),
 	  usuarioRutas=require("./routes/usuario"),
-	  adminRutas=require("./routes/admin")
+	  adminRutas=require("./routes/Admin")
 
 //configuraciones
 app.set('port',process.env.PORT || 3000)
@@ -30,7 +30,7 @@ app.use(express.urlencoded({extended:false}));
 
 //routes
 app.use('/',usuarioRutas)
-app.use('/admin',adminRutas)
+app.use('/Admin',adminRutas)
 
 //static files
 app.use(express.static(path.join(__dirname,'public')))

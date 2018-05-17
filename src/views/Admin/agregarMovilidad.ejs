@@ -1,0 +1,36 @@
+
+
+
+  <% include partes/__cabecera %>
+  <% include partes/__navegacion %>
+
+
+
+  <title>Agregar Movilidad</title>
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+       <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-danger">
+            <div class="box-header">
+              <H1 class="box-title">AGREGAR TIPO MOVILIDAD</H1>
+            </div>
+            <div class="box-body">
+
+            <form action="/admin/agregarTipoMovilidad" method="post">
+              <div class="form-group">
+                <input type="text" name="nombre" placeholder="nombre" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <textarea  name="descripcion" placeholder="Descripcion" class="form-control" required></textarea>
+              </div>
+              <button class="btn btn-primary center-block">Agregar Movilidad</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+  </div>
+
+ <% include partes/__footer %>

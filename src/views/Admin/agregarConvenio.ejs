@@ -1,0 +1,68 @@
+
+
+
+  <% include partes/__cabecera %>
+  <% include partes/__navegacion %>
+
+
+
+  <title>Agregar Convenio</title>
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+       <div class="row">
+        <div class="col-xs-8 col-xs-push-2">
+          <div class="box box-danger">
+            <div class="box-header">
+        <H1>AGREGAR CONVENIO</H1>
+            </div>
+            <div class="box-body">
+                  <form action="/admin/agregarConvenio" method="post">
+                     <div class="form-group">
+                        <input type="text" name="nombre" placeholder="nombre" class="form-control">
+                     </div>
+                     <div class="form-group">
+                       <textarea  name="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                     </div>
+                     <div class="form-group">
+                       <select id="tipo_movilidad" class="form-control">
+                       <%for(var i=0;i<data.length;i++){%>
+                         <option value="<%=data[i].id_tipo_movilidad%>" ><%=data[i].nombre%></option>
+                       <%}%>
+                     </select>
+                     </div>
+          <H1>AGREGAR CONVENIO ESPECIFICO</H1>
+
+          <div class="form-group">
+             <input type="text" name="nombreConvenioEspecifico" placeholder="nombre" class="form-control">
+          </div>
+          <div class="form-group">
+            <textarea  name="descripcionConvenioEspecifico" placeholder="Descripcion" class="form-control"></textarea>
+          </div>
+
+          <H1>REQUISITO</H1>
+          <div class="form-group">
+             <input type="text" name="nombreConvenioEspecifico" placeholder="nombre" class="form-control">
+          </div>
+          <div class="form-group">
+            <textarea  name="descripcionConvenioEspecifico" placeholder="Descripcion" class="form-control"></textarea>
+          </div>
+
+
+
+
+
+
+              <button class="btn btn-primary center-block ">Agregar Convenio</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+  </div>
+
+
+
+ <% include partes/__footer %>
+
+<script src="/js/convenio.js"></script>

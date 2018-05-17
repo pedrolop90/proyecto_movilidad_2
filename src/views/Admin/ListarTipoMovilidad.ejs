@@ -1,0 +1,90 @@
+<% include partes/__cabecera %>
+  <% include partes/__navegacion %>
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+       <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Lista de Tipo Movilidad</h3>
+                <a href="/admin/agregarMovilidad" class="btn btn-default"
+                data-toggle="tooltip" data-placement="right" title="Agregar Tipo Movilidad">
+                   <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="box-body">
+              <table id="tablaTipoMovilidad" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Editar</th>
+                  <th>Accion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for(var i=0;i<data.length;i++){%>
+                  <tr>
+                  <td><%=data[i].nombre%></td>
+                  <td><%=data[i].descripcion%></td>
+                  <td>
+                  <button data-id="<%=data[i].id_tipo_movilidad%>"  data-accion="editar"
+                  class="btn btn-info editar" onclick="desplegarModal(this)"
+                  data-toggle="tooltip" data-placement="top" title="Editar Movilidad">
+                     <span class="glyphicon glyphicon-wrench"></span>
+                     </button>
+                  </td>
+                  <td>
+                  <a href="/Admin/eliminar_tipo_movilidad?id=<%=data[i].id_tipo_movilidad%>"  id="eliminar_tipo_movilidad"   class="btn btn-danger"
+                  data-toggle="tooltip"   data-placement="top" title="Eliminar Movilidad">
+                     <span class="glyphicon glyphicon-trash"></span>
+                     </a>
+                  </td>
+                  </tr>
+                <%}%>
+                </tbody>
+                </table>
+
+            </div>
+          </div>
+    </div>
+     </div>
+    </section>
+  </div>
+
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EDITAR MOVILIDAD</h4>
+        </div>
+
+        <div class="modal-body">
+          <form  id="formulario_piso_tipoMovilidad" onsubmit="return false;">
+             <div class="form-group">
+                <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control">
+             </div>
+             <div class="form-group">
+               <textarea  name="descripcion" id="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+             </div>
+             <div class="modal-footer">
+                 <button id="actualizarTipoMovilidad" class="btn btn-primary center">GUARDAR CAMBIOS</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+        </div>
+
+        </form>
+        </div>
+
+      </div>
+
+    </div>
+
+
+ <% include partes/__footer %>
+ <script src="/js/convenio.js"></script>
