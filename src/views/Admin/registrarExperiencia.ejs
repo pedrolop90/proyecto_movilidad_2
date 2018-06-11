@@ -1,0 +1,46 @@
+
+
+<% include partes/__cabecera %>
+<% include partes/__navegacion %>
+<div class="content-wrapper">
+  <section class="content container-fluid">
+
+    <div class="col-lg-8 col-lg-push-2">
+      <div class="box box-danger">
+
+        <div class="box-header with-border">
+          <h3 class="box-title">Agregar Experiencia</h3>
+        </div>
+        <form class="form-horizontal" id="formulario"
+        onsubmit="return false;">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="nombre" class="col-sm-2 control-label">Convenio</label>
+            <div class="col-sm-10">
+              <select name="convenio" class="form-control" id="convenio" placeholder="Archivo">
+                <option value='<%=data[0].id_convenio%>' selected="selected"><%=data[0].nombre%></option>
+                <%for(var i=1;i<data.length;i++){%>
+                  <option value='<%=data[i].id_convenio%>'><%=data[i].nombre%></option>
+                  <%}%>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="nombre" class="col-sm-2 control-label">Video</label>
+              <div class="col-sm-10">
+                <input type="file" name="archivo" class="form-control" id="archivo" placeholder="Archivo" required="">
+              </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-danger center-block" id="enviar">Agregar</button>
+          </div>
+        </form>
+        <div class="box-footer" id="porcentaje"></div>
+      </div>
+    </div>
+
+  </section>
+</div>
+<script src="/js/experiencia.js"></script>
+<% include partes/__footer %>

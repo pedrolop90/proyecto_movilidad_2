@@ -67,17 +67,27 @@
         <div class="modal-body">
           <form  id="formulario_piso_tipoMovilidad" onsubmit="return false;">
              <div class="form-group">
+               <label for="nombre">nombre</label>
                 <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control">
              </div>
              <div class="form-group">
-               <textarea  name="descripcion" id="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+               <label for="descripcion">descripcion</label>
+               <textarea name="descripcion" id="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+             </div>
+             <div class="col-lg-12">
+              <h1 class="box-title">Requisito <label  id='agregarRequisito'
+              class="btn btn-default" data-toggle="tooltip" data-placement="right"
+              title="Agregar Requisito"><span class="glyphicon glyphicon-plus"></span>
+                </label></h1>
+            </div>
+             <div class="form-group" id='contenedorRequisitos'>
+
              </div>
              <div class="modal-footer">
                  <button id="actualizarTipoMovilidad" class="btn btn-primary center">GUARDAR CAMBIOS</button>
                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
              </div>
         </div>
-
         </form>
         </div>
 
@@ -87,4 +97,5 @@
 
 
  <% include partes/__footer %>
- <script src="/js/convenio.js"></script>
+ <script src="/js/agregarMovilidad.js"></script>
+ <script src="/js/movilidad.js"></script>

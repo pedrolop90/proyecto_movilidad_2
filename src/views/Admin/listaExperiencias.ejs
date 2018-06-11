@@ -1,41 +1,51 @@
+<% include partes/__cabecera %>
+<% include partes/__navegacion %>
+<div class="content-wrapper">
+  <section class="content container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-danger">
+          <div class="box-header">
+            <h3 class="box-title">Lista de Experiencias</h3>
+            <a href="/admin/RegistrarExperiencia" class="btn btn-default"
+            data-toggle="tooltip" data-placement="right" title="Agregar Experiencia">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+        </div>
+        <div class="box-body">
+          <table id="tablaExperiencia" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Pais</th>
+                <th>Universidad</th>
+                <th>Convenio</th>
+                <th>Tipo de Movilidad</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
 
-  <% include partes/__cabecera %>
-  <% include partes/__navegacion %>
-  <div class="content-wrapper">
-    <section class="content container-fluid">
-       <div class="row">
-        <div class="col-xs-12">
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">Lista de Experiencias</h3>
-                <a href="/docente/registrarEstudiante" class="btn btn-default"
-                data-toggle="tooltip" data-placement="right" title="Agregar Experiencia">
-                   <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="box-body">
-              <table id="tablaExperiencia" class="table table-bordered table-hover">
-                <thead>
+              <%for(var i=0;i<data.length;i++){%>
                 <tr>
-                  <th>Universidad</th>
-                  <th>DNI</th>
-                  <th>Fecha de Nacimiento</th>
-                  <th>Telefono</th>
-                  <th>Editar</th>
-                  <th>Accion</th>
+                <td><%=data[i].nombre_pais%></td>
+                <td><%=data[i].nombre_universidad%></td>
+                <td><%=data[i].nombre_convenio%></td>
+                <td><%=data[i].nombre_tipo_movilidad%></td>
+
+                <td> <a href="/Admin/eliminarExperiencia?id=<%=data[i].id_experiencia%>"
+                type="button" class="btn btn-danger"
+                data-toggle="tooltip" data-placement="top" title="Eliminar Experiencia">
+                <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                </td>
                 </tr>
-                </thead>
-                <tbody>
-                 
-
-                </tbody>
-                
-
-              </table>
-            </div>
+                <%}%>
+              </tbody>
+            </table>
           </div>
+        </div>
+      </div>
     </div>
-     </div>
-    </section>
-  </div>
- <% include partes/__footer %>
+  </section>
+</div>
+<% include partes/__footer %>

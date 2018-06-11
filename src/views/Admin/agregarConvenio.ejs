@@ -6,55 +6,51 @@
 
 
 
-  <title>Agregar Convenio</title>
   <div class="content-wrapper">
     <section class="content container-fluid">
        <div class="row">
         <div class="col-xs-8 col-xs-push-2">
           <div class="box box-danger">
             <div class="box-header">
-        <H1>AGREGAR CONVENIO</H1>
+                <H1 class="box-title">AGREGAR CONVENIO</H1>
             </div>
+              <form action="/admin/agregarConvenio" method="post" onsubmit="return false;"
+              id="formulario_registrar_convenio" name="formulario_registrar_convenio">
             <div class="box-body">
-                  <form action="/admin/agregarConvenio" method="post">
                      <div class="form-group">
-                        <input type="text" name="nombre" placeholder="nombre" class="form-control">
+                        <input type="text" name="nombre" placeholder="nombre" class="form-control" required>
                      </div>
                      <div class="form-group">
-                       <textarea  name="descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                       <textarea  name="descripcion" placeholder="Descripcion" class="form-control" required></textarea>
                      </div>
                      <div class="form-group">
-                       <select id="tipo_movilidad" class="form-control">
-                       <%for(var i=0;i<data.length;i++){%>
+                       <select id="tipo_movilidad" class="form-control" form="formulario_registrar_convenio" name="tipo_movilidad">
+                        <% if(data.length>0){%>
+                         <option value="<%=data[0].id_tipo_movilidad%>" selected="selected"><%=data[0].nombre%></option>
+                         <%}%>
+                       <%for(var i=1;i<data.length;i++){%>
                          <option value="<%=data[i].id_tipo_movilidad%>" ><%=data[i].nombre%></option>
                        <%}%>
                      </select>
                      </div>
-          <H1>AGREGAR CONVENIO ESPECIFICO</H1>
+                     <div class="form-group">
+                       <select id="pais" class="form-control" form="formulario_registrar_convenio" name="pais"></select>
+                     </div>
+                     <div class="col-lg-7 col-lg-push-3">
+ 				              <h1 class="box-title">Convenio Especifico <label  id='agregarPregunta'
+ 				              class="btn btn-default" data-toggle="tooltip" data-placement="right"
+ 				              title="Agregar Pregunta"><span class="glyphicon glyphicon-plus"></span>
+ 				              	</label></h1>
+ 				            </div>
+                    <div class="form-group" id='contenedorPreguntas'>
 
-          <div class="form-group">
-             <input type="text" name="nombreConvenioEspecifico" placeholder="nombre" class="form-control">
-          </div>
-          <div class="form-group">
-            <textarea  name="descripcionConvenioEspecifico" placeholder="Descripcion" class="form-control"></textarea>
-          </div>
-
-          <H1>REQUISITO</H1>
-          <div class="form-group">
-             <input type="text" name="nombreConvenioEspecifico" placeholder="nombre" class="form-control">
-          </div>
-          <div class="form-group">
-            <textarea  name="descripcionConvenioEspecifico" placeholder="Descripcion" class="form-control"></textarea>
+                    </div>
           </div>
 
-
-
-
-
-
-              <button class="btn btn-primary center-block ">Agregar Convenio</button>
+          <div class="box-footer">
+            <button type="submit" id="boton_enviar" class="btn btn-danger center-block">Agregar Convenio</button>
+          </div>
             </form>
-          </div>
         </div>
       </div>
     </div>
