@@ -1,9 +1,29 @@
 const controller={};
+
+controller.paises=(req,res)=>{
+  req.getConnection((err,conn)=>{
+    conn.query('select * from pais where estado=1 order by nombre',(err,rows)=>{
+      if(err){
+        res.json(err)
+      }
+      res.render("Admin/listarPais",{
+        data:rows
+      });
+    });
+  });
+}
+
+
+controller.vistaRegistrarPais=(req,res)=>{
+res.render("Admin/registrarPais")
+}
+
+
+
 controller.listar=(req,res)=>{
  req.getConnection((err,conn)=>{
-   conn.query('select p.nombre as nombrePais,u.nombre as nombreUniversidad,pu.id_pais_universidad as id'+
-   ' from pais_universidad pu join universidad u on pu.id_universidad=u.id_universidad '+
-   ' join pais p on p.id_pais=pu.id_pais ',(err,rows)=>{
+   conn.query('select p.nombre as nombrePais,u.nombre as nombreUniversidad,u.id_pais as id '+
+   ' from universidad u join pais p on p.id_pais=u.id_pais and u.estado=1 ',(err,rows)=>{
      if(err){
        res.json(err)
      }
@@ -12,17 +32,40 @@ controller.listar=(req,res)=>{
  });
 }
 
-
-controller.registrarExperiencia=(req,res)=>{
-
+controller.registrarPais=(req,res)=>{
+ var datos=req.body
  req.getConnection((err,conn)=>{
-   conn.query('select * from convenio',(err,rows)=>{
+   conn.query('insert into pais set ?',[datos],(err,rows)=>{
      if(err){
        res.json(err)
      }
-     res.render("Admin/registrarExperiencia",{
-       data:rows
-     });
+     res.redirect('/admin/paises');
+   });
+ });
+}
+
+
+ controller.eliminarPais=(req,res)=>{
+	var datos=req.query.id;
+	req.getConnection((err,conn)=>{
+		conn.query('UPDATE pais SET estado = 0 WHERE id_pais = ? ',[datos],(err,rows)=>{
+			if(err){
+				res.json(err)
+			}
+			res.redirect("/Admin/paises");
+		});
+	})
+
+}
+
+controller.buscarPais=(req,res)=>{
+   var datos=req.body
+ req.getConnection((err,conn)=>{
+   conn.query('select * from pais where id_pais=?',[datos.id],(err,rows)=>{
+     if(err){
+       res.json(err)
+     }
+     res.json(rows[0]);
    });
  });
 }

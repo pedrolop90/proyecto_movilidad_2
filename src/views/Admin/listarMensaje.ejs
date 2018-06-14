@@ -1,0 +1,50 @@
+
+
+  <% include partes/__cabecera %>
+  <% include partes/__navegacion %>
+  <div class="content-wrapper">
+    <section class="content container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-danger">
+            <div class="box-header">
+              <h3 class="box-title">Lista de Mensajes</h3>
+          </div>
+          <div class="box-body">
+            <table id="tablaPais" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Descripcion</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%if(data!=null){%>
+                <%for(var i=0;i<data.length;i++){%>
+                  <tr>
+                  <td><%=data[i].codigo%></td>
+                  <td><%=data[i].nombre%></td>
+                  <td><%=data[i].correo%></td>
+                  <td><%=data[i].Descripcion%></td>
+                  <td>
+                  <td> <a href="/Admin/eliminarMensaje?id=<%=data[i].id_mensaje%>"
+                  type="button" class="btn btn-danger"
+                  data-toggle="tooltip" data-placement="top" title="Eliminar Mensaje">
+                  <span class="glyphicon glyphicon-trash"></span>
+                  </a>
+                  </td>
+                  </tr>
+                  <%}%>
+                <%}%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+ <% include partes/__footer %>

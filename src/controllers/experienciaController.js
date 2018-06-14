@@ -1,12 +1,11 @@
 const controller={};
+
 controller.listar=(req,res)=>{
  req.getConnection((err,conn)=>{
-   conn.query('select c.nombre as nombre_convenio,u.nombre as nombre_universidad,p.nombre as nombre_pais, '+
-     ' tm.nombre as nombre_tipo_movilidad, e.url_video,e.id_experiencia '+
-     ' from experiencia e join convenio c on e.id_convenio=c.id_convenio and e.estado=1 '+
-     ' join pais_universidad pu on pu.id_pais_universidad=c.id_pais_universidad '+
-     ' join universidad u on u.id_universidad=pu.id_universidad join pais p on p.id_pais=pu.id_pais '+
-     ' join tipo_movilidad tm on c.id_tipo_movilidad=tm.id_tipo_movilidad  ',(err,rows)=>{
+   conn.query('select u.nombre as nombre_universidad,p.nombre as nombre_pais, '+
+     ' e.url_video,e.id_experiencia '+
+     ' from experiencia e join universidad u on e.estado=1 and u.id_universidad=e.id_universidad '+
+     ' join pais p on p.id_pais=u.id_pais ',(err,rows)=>{
      if(err){
        res.json(err)
      }
@@ -19,7 +18,7 @@ controller.listar=(req,res)=>{
 
 controller.eliminarExperiencia=(req,res)=>{
  req.getConnection((err,conn)=>{
-   conn.query('delete from experiencia where id_experiencia=?',[req.query.id],(err,rows)=>{
+   conn.query('UPDATE experiencia SET estado = 0 WHERE id_experiencia = ? ',[req.query.id],(err,rows)=>{
      if(err){
        res.json(err)
      }
@@ -30,7 +29,8 @@ controller.eliminarExperiencia=(req,res)=>{
 
 controller.registrarExperiencia=(req,res)=>{
  req.getConnection((err,conn)=>{
-   conn.query('select * from convenio',(err,rows)=>{
+   conn.query('select p.nombre as pais,u.nombre as universidad,u.id_universidad '+
+   ' from universidad u join pais p on u.id_pais=p.id_pais and u.estado=1 ',(err,rows)=>{
      if(err){
        res.json(err)
      }
@@ -58,20 +58,22 @@ controller.agregarVideo=(req,res)=>{
    let formidable=require("formidable"),
    fse=require("fs-extra"),
     form=new formidable.IncomingForm(),
-      time=new Date().getTime();
-
+    time=new Date().getTime();
      form.maxFileSize=(10*1024*1024*1024*1024)
      form
      .parse(req)
      .on("end",function (fields,files){
        console.log(new Date().getTime()-time);
        let temporal=this.openedFiles[0].path,
-       nombre=this.openedFiles[0].name
-       fse.copy(temporal,"./src/public/videos/"+nombre,(err)=>{
+       exten=this.openedFiles[0].name
+       console.log(exten);
+       console.log(exten.substring(exten.indexOf("."),exten.length));
+       nombre="./src/public/videos/"+time+"_"+(new Date().getTime())+exten.substring(exten.indexOf("."),exten.length);
+       fse.copy(temporal,nombre,(err)=>{
          if(err){
            res.end(err);
          }
-         res.end("./src/public/videos/"+nombre);
+         res.end(nombre);
        })
      })
 

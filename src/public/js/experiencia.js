@@ -27,7 +27,7 @@ window.addEventListener("load",()=>{
 																		url: "/admin/agregarExperiencia",
 																		type: 'POST',
 																		dataType: "text",
-																		data: "id_convenio="+document.querySelector("#convenio").value+"&url_video="+res,
+																		data: "id_universidad="+document.querySelector("#id_universidad").value+"&url_video="+res,
 																		success:function(res2){
 																			window.location.href="/admin/experiencias";
 																		}

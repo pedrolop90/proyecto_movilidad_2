@@ -30,7 +30,7 @@ app.use(express.urlencoded({extended:false}));
 
 //routes
 app.use('/',usuarioRutas)
-app.use('/Admin',adminRutas)
+app.use('/admin',adminRutas)
 
 //static files
 app.use(express.static(path.join(__dirname,'public')))

@@ -6,7 +6,9 @@ const express=require('express'),
       convenioController=require("../controllers/convenioController"),
       requistoController=require("../controllers/requisitoController"),
       paisController=require("../controllers/paisController"),
-      convenioEspecificoController=require("../controllers/convenioEspecificoController");
+      convenioEspecificoController=require("../controllers/convenioEspecificoController"),
+      universidadController=require("../controllers/universidadController"),
+      mensajeController=require("../controllers/mensajeController")
 
 
 router.get('/experiencias',experienciaController.listar)
@@ -30,18 +32,30 @@ router.get('/agregarMovilidad',(req,res)=>{
 })
 
 router.get("/eliminarConvenio?:id",convenioController.eliminarConvenio);
-
 router.get("/eliminarExperiencia?:id",experienciaController.eliminar);
 router.post("/editarConvenio",convenioController.editarConvenio);
 router.get('/convenio',convenioController.listar)
 router.post('/agregarConvenio',convenioController.agregarConvenio)
 router.get('/RegistrarConvenio',tipoMovilidadController.listarMovilidadConvenio)
 
-
 router.post("/registrarConvenioEspecifico",convenioEspecificoController.registrarConvenioEspecifico);
-
 router.post("/listarPais",paisController.listar);
-
 router.post("/registrarRequisitoConvenio",requistoController.registrarRequisitoConvenio);
+
+router.get("/universidades",universidadController.universidades)
+router.get("/registrarUniverisdad",universidadController.vistaRegistrarUniversidad)
+router.post("/registrarUniverisdad",universidadController.registrarUniverisdad)
+router.get("/eliminarUniversidad?:id",universidadController.eliminarUniversidad)
+router.post("/buscarUniversidad",universidadController.buscarUniversidad)
+
+router.get("/paises",paisController.paises)
+router.get("/registrarPais",paisController.vistaRegistrarPais)
+router.post("/registrarPais",paisController.registrarPais)
+router.get("/eliminarPais?:id",paisController.eliminarPais)
+router.post("/buscarPais",paisController.buscarPais)
+
+
+router.get("/mensajes",mensajeController.mensajes)
+router.get("/eliminarMensaje",mensajeController.eliminarMensaje)
 
 module.exports=router;

@@ -18,20 +18,15 @@
               <tr>
                 <th>Pais</th>
                 <th>Universidad</th>
-                <th>Convenio</th>
-                <th>Tipo de Movilidad</th>
                 <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
-
+            <%if(data!=null){%>
               <%for(var i=0;i<data.length;i++){%>
                 <tr>
                 <td><%=data[i].nombre_pais%></td>
                 <td><%=data[i].nombre_universidad%></td>
-                <td><%=data[i].nombre_convenio%></td>
-                <td><%=data[i].nombre_tipo_movilidad%></td>
-
                 <td> <a href="/Admin/eliminarExperiencia?id=<%=data[i].id_experiencia%>"
                 type="button" class="btn btn-danger"
                 data-toggle="tooltip" data-placement="top" title="Eliminar Experiencia">
@@ -40,6 +35,7 @@
                 </td>
                 </tr>
                 <%}%>
+              <%}%>
               </tbody>
             </table>
           </div>

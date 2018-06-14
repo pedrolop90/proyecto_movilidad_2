@@ -15,13 +15,15 @@
         onsubmit="return false;">
         <div class="box-body">
           <div class="form-group">
-            <label for="nombre" class="col-sm-2 control-label">Convenio</label>
+            <label for="nombre" class="col-sm-2 control-label">Universidad</label>
             <div class="col-sm-10">
-              <select name="convenio" class="form-control" id="convenio" placeholder="Archivo">
-                <option value='<%=data[0].id_convenio%>' selected="selected"><%=data[0].nombre%></option>
+              <select name="id_universidad" class="form-control" id="id_universidad" placeholder="Archivo">
+                <%if(typeof(data)!='undefined'&&data.length>0){%>
+                <option value='<%=data[0].id_universidad%>' selected="selected"><%=data[0].universidad%> - <%=data[0].pais%></option>
                 <%for(var i=1;i<data.length;i++){%>
-                  <option value='<%=data[i].id_convenio%>'><%=data[i].nombre%></option>
-                  <%}%>
+                  <option value='<%=data[i].id_universidad%>'><%=data[i].universidad%> - <%=data[i].pais%></option>
+                <%}%>
+                <%}%>
                 </select>
               </div>
             </div>

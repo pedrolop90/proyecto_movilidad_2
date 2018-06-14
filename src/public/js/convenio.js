@@ -18,7 +18,6 @@ window.addEventListener("load",()=>{
     sel.appendChild(op);
     for (var i = 1; i < res.length; i++) {
       var op=document.createElement("option");
-      op.setAttribute("selected","selected");
       op.setAttribute("value",res[i].id);
       var text=document.createTextNode(res[i].nombreUniversidad+" de "+res[i].nombrePais);
       op.appendChild(text);
