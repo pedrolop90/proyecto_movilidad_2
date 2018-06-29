@@ -8,6 +8,7 @@ function desplegarModal(e){
     type:"post",
     dataType:"json",
     success:function(res){
+    document.getElementById("id_pais").value=id_pais;
     document.getElementById("codigo_modal").value=res.codigo;
     document.getElementById("nombre_modal").value=res.nombre;
     $('#myModal').modal('show')

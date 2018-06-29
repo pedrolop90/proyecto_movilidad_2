@@ -1,0 +1,40 @@
+
+
+  <% include partes/__superior %>
+  <% include partes/__navegacion %>
+
+
+    <div id="blog" class="content-block content-block-gray">
+        <div class="container">
+            <header class="block-heading cleafix text-center">
+                <h1>Convenio de la UFPS con la <%=data[0].nombreUniversidad%></h1>
+            </header>
+            <section class="block-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                      <h1><%=data[0].nombreConvenio%></h1>
+                      <p><%=data[0].descripcionConvenio%></p>
+                        <h1><%=data[0].nombreTipoMovilidad%></h1>
+                        <p><%=data[0].descripcionTipoMovilidad%></p>
+                    </div>
+                        <div class="col-sm-6">
+                      <%for(var i=0;i<data.length;i++){%>
+                        <div class="media service-box wow fadeInRight">
+                            <div class="pull-left">
+                                <i class="fa fa-bookmark"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                <a style="color:black;" href="/requisito?id=<%=data[i].id_convenio_especifico%>"><%=data[i].nombre%></a>
+                                </h4>
+                                <p><%=data[i].descripcion%></p>
+                            </div>
+                        </div>
+                      <%}%>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+ <% include partes/__inferior %>

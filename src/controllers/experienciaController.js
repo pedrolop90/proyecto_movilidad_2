@@ -68,26 +68,15 @@ controller.agregarVideo=(req,res)=>{
        exten=this.openedFiles[0].name
        console.log(exten);
        console.log(exten.substring(exten.indexOf("."),exten.length));
-       nombre="./src/public/videos/"+time+"_"+(new Date().getTime())+exten.substring(exten.indexOf("."),exten.length);
+       nom=time+"_"+(new Date().getTime())+exten.substring(exten.indexOf("."),exten.length);
+       nombre="./src/public/videos/"+nom;
        fse.copy(temporal,nombre,(err)=>{
          if(err){
            res.end(err);
          }
-         res.end(nombre);
+         res.end("/videos/"+nom);
        })
      })
-
-
- /*
- req.getConnection((err,conn)=>{
-   conn.query('insert into persona set ?',[datos],(err,rows)=>{
-     if(err){
-       res.json(err)
-     }
-     res.redirect("/admin");
-   });
- });
- */
 }
 
 controller.eliminar=(req,res)=>{

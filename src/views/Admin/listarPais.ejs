@@ -37,7 +37,6 @@
                      <span class="glyphicon glyphicon-wrench"></span>
                    </button>
                   </td>
-                  <td>
                   <td> <a href="/Admin/eliminarPais?id=<%=data[i].id_pais%>"
                   type="button" class="btn btn-danger"
                   data-toggle="tooltip" data-placement="top" title="Eliminar Pais">
@@ -66,8 +65,9 @@
         </div>
 
         <div class="modal-body">
-          <form  id="formulario_editar_pais" onsubmit="return false;">
+          <form  id="formulario_editar_pais" action="/admin/editarPais" method="post">
             <div class="box-body">
+              <input type="text" name="id_pais" id="id_pais" style="display:none;">
               <div class="form-group">
                 <label for="nombre" class="col-sm-2 control-label">Codigo </label>
                 <div class="col-sm-10">

@@ -65,6 +65,21 @@ controller.buscarUniversidad=(req,res)=>{
  });
 }
 
+controller.editarUniversidad=(req,res)=>{
+ var datos=req.body
+ req.getConnection((err,conn)=>{
+   conn.query('UPDATE universidad SET ? WHERE id_universidad = ?',
+   [{
+     nombre:datos.nombre,
+     id_pais:datos.pais
+   },datos.id_universidad],(err,rows)=>{
+     if(err){
+       res.json(err)
+     }
+     res.redirect("/admin/universidades");
+   });
+ });
+}
 
 
 

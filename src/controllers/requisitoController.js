@@ -32,6 +32,24 @@ console.log(req.body);
 
 }
 
+
+controller.actualizarRequisitoTipoMovilidad=(req,res)=>{
+ var datos=req.body
+ req.getConnection((err,conn)=>{
+   conn.query('UPDATE requisito SET ? WHERE id_requisito = ?',
+   [{
+     descripcion:datos.descripcion,
+   },datos.id_requisito],(err,rows)=>{
+     if(err){
+       res.json(err)
+     }
+     res.end("1");
+   });
+ });
+}
+
+
+
 controller.registrarRequisitoConvenio=(req,res)=>{
 console.log(req.body);
 

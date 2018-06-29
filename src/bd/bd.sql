@@ -25,6 +25,7 @@ create table if not exists  universidad(
 id_universidad integer auto_increment,
 nombre varchar(30) not null,
 id_pais integer not null,
+imagen_universidad varchar(200) not null,
 estado integer(1) default 1,
 constraint foranea_universidad_pais foreign key(id_pais) references pais(id_pais),
 constraint primaria_universidad primary key(id_universidad)
@@ -37,7 +38,7 @@ password varchar(60) not null,
 constraint primaria_admin primary key(id_admin)
 );
 
-insert into admin values(0,'123','123');
+insert into admin(usuario,password) values('123','123');
 
 create table if not exists  experiencia(
 id_experiencia integer auto_increment,
@@ -53,15 +54,6 @@ id_requisito integer auto_increment,
 nombre varchar(60) not null,
 descripcion varchar(200) not null,
 constraint primaria_requisito primary key(id_requisito)
-);
-
-create table if not exists  universidad_requisito(
-id_universidad_requisito integer auto_increment,
-id_universidad integer not null,
-id_requisito integer not null,
-constraint foranea_universidad_requisito_universidad foreign key(id_universidad) references universidad(id_universidad),
-constraint foranea_universidad_requisito_requisito foreign key(id_requisito) references requisito(id_requisito),
-constraint primaria_universidad_requisito primary key(id_universidad_requisito)
 );
 
 create table if not exists  tipo_movilidad(
@@ -83,21 +75,6 @@ constraint primaria_tipo_movilidad_requisito primary key(id_tipo_movilidad_requi
 );
 
 
-create table if not exists convenio_marco(
-id_convenio_marco integer auto_increment,
-nombre varchar(60) not null,
-descripcion varchar(200) not null,
-constraint primaria_convenio_marco primary key(id_convenio_marco)
-);
-
-
-create table if not exists convenio_especifico(
-id_convenio_especifico integer auto_increment,
-nombre varchar(60) not null,
-descripcion varchar(200) not null,
-constraint foranea_convenio_especifico_convenio_marco foreign key(id_convenio_especifico) references convenio_marco(id_convenio_marco),
-constraint primaria_convenio_especifico primary key(id_convenio_especifico)
-);
 
 create table if not exists  convenio(
 id_convenio integer auto_increment,
@@ -108,9 +85,18 @@ id_convenio_especifico integer not null,
 id_universidad integer not null,
 estado integer(1) default 1,
 constraint foranea_convenio_universidad foreign key(id_universidad) references universidad(id_universidad),
-constraint foranea_convenio_convenio_especifico foreign key(id_convenio_especifico) references convenio_especifico(id_convenio_especifico),
 constraint foranea_convenio_tipo_movilidad foreign key(id_tipo_movilidad) references tipo_movilidad(id_tipo_movilidad),
 constraint primaria_convenio primary key(id_convenio)
+);
+
+
+create table if not exists convenio_especifico(
+id_convenio_especifico integer auto_increment,
+nombre varchar(60) not null,
+descripcion varchar(200) not null,
+id_convenio integer,
+constraint foranea_convenio_especifico_convenio_ foreign key(id_convenio) references convenio(id_convenio),
+constraint primaria_convenio_especifico primary key(id_convenio_especifico)
 );
 
 
@@ -124,16 +110,6 @@ references requisito(id_requisito),
 constraint foranea_convenio_especifico_requisito_convenio_especifico foreign key(id_convenio_especifico)
 references convenio_especifico(id_convenio_especifico),
 constraint primaria_convenio_especifico_requisito primary key(id_convenio_especifico_requisito)
-);
-
-
-create table if not exists  convenio_requisito(
-id_convenio_requisito integer auto_increment,
-id_convenio integer not null,
-id_requisito integer not null,
-constraint foranea_convenio_requisito_convenio foreign key(id_convenio) references convenio(id_convenio),
-constraint foranea_convenio_requisito_requisito foreign key(id_requisito) references requisito(id_requisito),
-constraint primaria_convenio_requisito primary key(id_convenio_requisito)
 );
 
 

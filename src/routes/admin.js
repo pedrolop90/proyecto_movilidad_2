@@ -24,6 +24,7 @@ router.post('/agregarTipoMovilidad',tipoMovilidadController.agregar)
 router.post('/actualizarTipoMovilidad',tipoMovilidadController.actualizarTipoMovilidad)
 router.get('/eliminar_tipo_movilidad?:id',tipoMovilidadController.eliminar)
 router.post("/registrarRequistoTipoMovilidad",requistoController.registrarRequistoTipoMovilidad);
+router.post("/actualizarRequisitoTipoMovilidad",requistoController.actualizarRequisitoTipoMovilidad);
 
 
 router.post('/editarMovilidad',tipoMovilidadController.editar)
@@ -47,12 +48,15 @@ router.get("/registrarUniverisdad",universidadController.vistaRegistrarUniversid
 router.post("/registrarUniverisdad",universidadController.registrarUniverisdad)
 router.get("/eliminarUniversidad?:id",universidadController.eliminarUniversidad)
 router.post("/buscarUniversidad",universidadController.buscarUniversidad)
+router.post("/editarUniversidad",universidadController.editarUniversidad)
 
 router.get("/paises",paisController.paises)
 router.get("/registrarPais",paisController.vistaRegistrarPais)
 router.post("/registrarPais",paisController.registrarPais)
 router.get("/eliminarPais?:id",paisController.eliminarPais)
 router.post("/buscarPais",paisController.buscarPais)
+router.post("/editarPais",paisController.editarPais)
+router.post("/listarTodosPaises",paisController.listarTodosPaises)
 
 
 router.get("/mensajes",mensajeController.mensajes)

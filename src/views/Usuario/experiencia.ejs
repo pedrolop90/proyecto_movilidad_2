@@ -1,0 +1,27 @@
+
+
+  <% include partes/__superior %>
+  <% include partes/__navegacion %>
+
+    <div id="blog" class="content-block content-block-gray">
+        <div class="container">
+            <header class="block-heading cleafix text-center">
+                <h1>Experiencias</h1>
+            </header>
+            <section class="block-body">
+                <div class="row">
+                      <%for(var i=0;i<data.length;i++){%>
+                        <div class="col-sm-4 blog-post">
+                          <div align="center" class="embed-responsive embed-responsive-16by9">
+                              <video width="100%" controls class="embed-responsive-item">
+                                  <source src="<%=data[i].url_video%>"  type="video/mp4">
+                              </video>
+                              <div class="date" style="font-size:1.5em;"><%=data[i].nombreUniversidad%></div>
+                          </div>
+                        </div>
+                      <%}%>
+                </div>
+            </section>
+        </div>
+    </div>
+ <% include partes/__inferior %>

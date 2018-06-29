@@ -9,7 +9,7 @@ window.addEventListener("load",()=>{
     type:"post",
     dataType:"json",
     success:function(res){
-    var sel=document.querySelector("#pais");
+    var sel=document.querySelector("#universidad");
     var op=document.createElement("option");
     op.setAttribute("selected","selected");
     op.setAttribute("value",res[0].id);
@@ -265,11 +265,12 @@ function regresarInput(tipo,name,id,place,boton,boton2){
 
 
  document.getElementById("boton_enviar").addEventListener("click",()=>{
-  //console.log($('#formulario_registrar_convenio').serialize())
+  console.log($('#formulario_registrar_convenio').serialize())
   $.ajax({
     url: '/admin/agregarConvenio',
     data: $('#formulario_registrar_convenio').serialize(),
     type : 'POST',
+    async:false,
     dataType : 'json',
     success: function(res) {
       console.log(res);
@@ -288,12 +289,14 @@ function regresarInput(tipo,name,id,place,boton,boton2){
             async:false,
             dataType: 'json',
             success: function(res2) {
+              console.log(res2);
               segundo(res2,aux);
             }
           });
           }
         }
       }
+      window.location.href ="/admin/convenio";
     }
   });
 
@@ -309,7 +312,8 @@ function segundo(maximo,aux){
           $.ajax({
             url: '/admin/registrarRequisitoConvenio',
             data: "descripcion="+datos[i].value+"&id_convenio_especifico="+maximo,
-            type : 'POST'
+            type : 'POST',
+            async:false
           });
         }
   }

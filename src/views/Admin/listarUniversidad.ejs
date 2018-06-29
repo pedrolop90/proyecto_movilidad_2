@@ -67,8 +67,9 @@
           </div>
 
           <div class="modal-body">
-            <form  id="formulario_editar_universidad" onsubmit="return false;">
+            <form  id="formulario_editar_universidad" method="post" action="/admin/editarUniversidad">
               <div class="box-body">
+                <input type="text" name="id_universidad" id="id_universidad" style="display:none;">
                 <div class="form-group">
                   <label for="nombre" class="col-sm-2 control-label">Pais </label>
                   <div class="col-sm-10">

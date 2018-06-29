@@ -17,7 +17,8 @@ controller.listar=(req,res)=>{
 controller.registrarConvenioEspecifico=(req,res)=>{
 data={
   nombre:req.body.nombre,
-  descripcion:req.body.descripcion
+  descripcion:req.body.descripcion,
+  id_convenio:req.body.id_convenio
 }
 var max;
  req.getConnection((err,conn)=>{
@@ -25,25 +26,18 @@ var max;
      if(err){
        res.json(err)
      }
-
      req.getConnection((err,conn)=>{
        conn.query('select max(id_convenio_especifico) as max from convenio_especifico',(err,rows)=>{
          if(err){
            res.json(err)
          }
-         max=rows[0].max
+         max=rows[0].max;
          data={
            id_convenio:req.body.id_convenio,
            id_convenio_especifico:max
          }
-         req.getConnection((err,conn)=>{
-           conn.query('insert into convenio_convenio_especifico set ?',[data],(err,rows)=>{
-             if(err){
-               res.json(err)
-             }
-             res.json(max);
-           });
-         });
+         console.log(max);
+         res.json(max);
        });
      });
    });

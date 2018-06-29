@@ -17,12 +17,20 @@ controller.paises=(req,res)=>{
 controller.vistaRegistrarPais=(req,res)=>{
 res.render("Admin/registrarPais")
 }
-
-
+controller.listarTodosPaises=(req,res)=>{
+ req.getConnection((err,conn)=>{
+   conn.query('select * from pais',(err,rows)=>{
+     if(err){
+       res.json(err)
+     }
+     res.json(rows);
+   });
+ });
+}
 
 controller.listar=(req,res)=>{
  req.getConnection((err,conn)=>{
-   conn.query('select p.nombre as nombrePais,u.nombre as nombreUniversidad,u.id_pais as id '+
+   conn.query('select p.nombre as nombrePais,u.nombre as nombreUniversidad,u.id_universidad as id '+
    ' from universidad u join pais p on p.id_pais=u.id_pais and u.estado=1 ',(err,rows)=>{
      if(err){
        res.json(err)
@@ -55,7 +63,6 @@ controller.registrarPais=(req,res)=>{
 			res.redirect("/Admin/paises");
 		});
 	})
-
 }
 
 controller.buscarPais=(req,res)=>{
@@ -70,14 +77,18 @@ controller.buscarPais=(req,res)=>{
  });
 }
 
-controller.agregarExperiencia=(req,res)=>{
+controller.editarPais=(req,res)=>{
  var datos=req.body
  req.getConnection((err,conn)=>{
-   conn.query('insert into experiencia set ?',[datos],(err,rows)=>{
+   conn.query('UPDATE pais SET ? WHERE id_pais = ?',
+   [{
+     nombre:datos.nombre,
+     codigo:datos.codigo
+   },datos.id_pais],(err,rows)=>{
      if(err){
        res.json(err)
      }
-
+     res.redirect("/admin/paises");
    });
  });
 }

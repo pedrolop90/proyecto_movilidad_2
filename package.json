@@ -1,7 +1,6 @@
 {
   "name": "proyecto-2",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.js",
@@ -21,5 +20,6 @@
   },
   "devDependencies": {
     "nodemon": "^1.17.3"
-  }
+  },
+  "description": ""
 }

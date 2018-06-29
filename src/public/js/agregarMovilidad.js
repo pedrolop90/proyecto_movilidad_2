@@ -11,8 +11,11 @@ document.querySelector("#agregarRequisito").addEventListener("click",()=>{
 
 function quitarOpcion(e){
   var id=e.target.id.split("_");
-  if(id.length!=3){
+  if(id[0]!="requisito"){
     id=e.target.parentElement.id.split("_")
+    if(id[0]!="requisito"){
+      id=e.target.parentElement.parentElement.id.split("_")
+    }
   }
   var aux=document.getElementById("requisito_"+id[1]);
   aux.parentElement.removeChild(document.getElementById("requisito_"+id[1]))

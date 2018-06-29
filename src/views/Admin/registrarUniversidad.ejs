@@ -11,12 +11,12 @@
         <div class="box-header with-border">
           <h3 class="box-title">Agregar universidad</h3>
         </div>
-        <form class="form-horizontal" id="formulario" action="/admin/registrarUniverisdad" method="post">
+        <form class="form-horizontal" id="formulario" action="/admin/registrarUniverisdad" method="post" onsubmit="return false;" >
         <div class="box-body">
           <div class="form-group">
-            <label for="nombre" class="col-sm-2 control-label">Convenio</label>
+            <label for="nombre" class="col-sm-2 control-label">Pais</label>
             <div class="col-sm-10">
-              <select name="id_pais" class="form-control" id="convenio" placeholder="Archivo">
+              <select name="id_pais" class="form-control" id="id_pais" placeholder="Archivo">
                 <%if(typeof(data)!='undefined'&&data.length>0){%>
                 <option value='<%=data[0].id_pais%>' selected="selected"><%=data[0].nombre%></option>
                 <%for(var i=1;i<data.length;i++){%>
@@ -27,6 +27,12 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="imagen" class="col-sm-2 control-label">Logo de la Universidad</label>
+              <div class="col-sm-10">
+                <input type="file" name="imagen" class="form-control" id="archivo" placeholder="Archivo" required="">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="nombre" class="col-sm-2 control-label">Nombre </label>
               <div class="col-sm-10">
                 <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre Universidad" required="">
@@ -34,7 +40,7 @@
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-danger center-block">Agregar</button>
+            <button type="submit" id="enviar" class="btn btn-danger center-block">Agregar</button>
           </div>
         </form>
       </div>
@@ -42,5 +48,37 @@
 
   </section>
 </div>
+<script>
+window.addEventListener("load",()=>{
+  $("#enviar").on("click",()=>{
+
+                            var formData = new FormData(document.getElementById("formulario"));
+                             $.ajax({
+                                url: "/admin/agregarVideo",
+                                 type: 'POST',
+                                dataType: "html",
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false
+                            })
+                             .done(function(res){
+                                 console.log(res);
+                                 $.ajax({
+                                    url: "/admin/registrarUniverisdad",
+                                    type: 'POST',
+                                    dataType: "text",
+                                    data: "id_pais="+document.querySelector("#id_pais").value+"&imagen_universidad="+res+
+                                    "&nombre="+document.querySelector("#nombre").value,
+                                    success:function(res2){
+                                      window.location.href="/admin/universidades";
+                                    }
+                                })
+                            });
+
+      });
+})
+
+</script>
 
 <% include partes/__footer %>

@@ -1,0 +1,49 @@
+
+html, body{
+  height:100%!important;
+}
+
+.box{
+  /*background-color: rgba(0,0,0,0);*/
+}
+.block-heading{
+    font-size: 2em!important;
+    font-family: 'Paytone One', sans-serif!important;
+}
+body{
+  /*background-image: url("../img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 130%;*/
+  background-color: rgb(180,52,50);
+}
+.box-header{
+  color:black;
+}
+.primero{
+  margin-top:20px;
+}
+.thumbnail label{
+  position: absolute!important;
+  z-index:2;
+  margin-top:15%!important;
+  font-size:2em!important;
+  color:black;
+  text-align: center;
+}
+.navegacion_barra{
+  margin-left: -30px!important;
+  border-right:5px solid white;
+  height: 99.5vh;
+}
+.navegacion_barra .row{
+    margin-left: 10px!important;
+}
+
+.nombre_universidad{
+  background-color: rgba(0,0,0,0.3);
+  color:white!important;
+  margin-left: -20px;
+}
+.seleccionado_navegacion{
+  margin-left:20px;
+}

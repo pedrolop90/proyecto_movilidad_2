@@ -18,7 +18,7 @@ controller.agregarConvenio=(req,res)=>{
 		nombre: datos.nombre,
 		descripcion: datos.descripcion,
 		id_tipo_movilidad:datos.tipo_movilidad,
-		id_pais_universidad: datos.pais,
+		id_universidad: datos.universidad,
 	}
 	req.getConnection((err,conn)=>{
 		conn.query('insert into convenio set ?',[datos],(err,rows)=>{
